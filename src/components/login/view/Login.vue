@@ -10,3 +10,11 @@
     }
   }
 </script>
+<style scoped>
+  h1{
+    text-align:center;
+    height:60px;
+    line-height:60px;
+  }
+</style>
+
