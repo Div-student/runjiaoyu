@@ -6,23 +6,47 @@
     <div>密码登录</div>
   </header>
   <div class="middle">
-    <div><i class="el-icon-mobile-phone"></i><input type="text"></div>
+    <div><i class="el-icon-mobile-phone"></i><input type="text" v-model="phonenumb"></div>
     <div><i class="el-icon-menu"></i><input type="text" placeholder="验证码"><button>获取验证码</button></div>
   </div>
   <footer>
     <div>温馨提示：未注册润教育账号的手机号，登录时会自动完成注册并代表您已同意《润教育用户协议》</div>
     <div>
-      <el-button type="primary" style="background-color:#52cc77">登录</el-button>
+      <el-button type="primary" style="background-color:#52cc77" @click="clickbtn">登录</el-button>
       <p class="bottomletter">收不到？试试<span>语音验证码</span></p>
      </div>
   </footer>
+  <div class="mask" v-show="flag">
+    <Tools :value1='toolsvalue' ></Tools>
+  </div>
 </div>
 </template>
 <script>
+import Tools from '@/components/common/tools'
+let phonenu = /^1[3-9][0-9]{9}$/
 export default {
   name: 'Login',
   data () {
     return {
+      toolsvalue: '请输入正确的手机号码',
+      flag: false,
+      phonenumb: ''
+    }
+  },
+  components: {
+    Tools
+  },
+  methods: {
+    clickbtn () {
+      if (!phonenu.test(this.phonenumb)) {
+        this.flag = true
+        setTimeout(() => {
+          this.flag = false
+        }, 1500)
+      } else {
+        sessionStorage.setItem('phonenumb', this.phonenumb)
+        this.$router.push('/home')
+      }
     }
   }
 }
@@ -111,5 +135,14 @@ export default {
     }
     .bottomletter span{
       font-size:18px;
+    }
+    /* 遮罩层 */
+    .mask{
+      width:100%;
+      height:100%;
+      background-color:rgba(0, 0, 0, .4);
+      position:fixed;
+      top:0px;
+      left:0px;
     }
 </style>
