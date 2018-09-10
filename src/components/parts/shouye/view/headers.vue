@@ -8,7 +8,7 @@
           <el-col :span="20"><el-input type='text' class="headesearch" placeholder="搜索科目机构"></el-input></el-col>
         </el-row>
       </el-col>
-      <el-col :span="4"><div><i class="fa fa-paper-plane fa-2x" style="color:#4FD768; margin-top:5px;"></i></div></el-col>
+      <el-col :span="4"><div><i class="fa fa-commenting-o fa-2x" style="color:#4FD768; margin-top:5px;"></i></div></el-col>
     </el-row>
   </div>
 </template>
